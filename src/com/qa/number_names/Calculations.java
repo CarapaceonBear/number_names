@@ -45,6 +45,7 @@ public class Calculations {
 
 		String hundred = "";
 		String hundredAnd = "and ";
+		String notEmpty = " hundred ";
 		if (length > 2) {
 			hundred = Readout.readUnit(num1[2]);
 			if (num1[1] == 0) {
@@ -52,6 +53,10 @@ public class Calculations {
 				if (num1[0] == 0) {
 					hundredAnd = "";
 				}
+			}
+			if (num1[2] == 0) {
+				hundred = "";
+				notEmpty = "";
 			}
 		}
 
@@ -64,7 +69,7 @@ public class Calculations {
 			result = (ten + " " + unit);
 			break;
 		case 3:
-			result = (hundred + " hundred " + hundredAnd + ten + " " + unit);
+			result = (hundred + notEmpty + hundredAnd + ten + " " + unit);
 			break;
 		default:
 			break;
@@ -93,19 +98,24 @@ public class Calculations {
 			million = threeDigits(part3);
 		}
 
-		 int increment = (length / 3) + 1;
+		 int increment = ((length-1) / 3) + 1;
 		 
 		 String result = ""; 
+		 String spacer1 = " million, ";
+		 String spacer2 = " thousand, ";
 		 switch(increment) {
 		 	case 1: 
 		 		hundred = threeDigits(part1); 
 		 		result = hundred;
 		 		break; 
 		 	case 2: 
-		 		result = (thousand + " thousand, " + hundred); 
+		 		result = (thousand + spacer2 + hundred); 
 		 		break; 
 		 	case 3: 
-		 		result = (million + " million, " + thousand + " thousand, " + hundred); 
+		 		if (thousand.equals(" ")) {
+		 			spacer2 = "";
+		 		}
+		 		result = (million + spacer1 + thousand + spacer2 + hundred); 
 		 		break; 
 		 	default:
 		 		break; 

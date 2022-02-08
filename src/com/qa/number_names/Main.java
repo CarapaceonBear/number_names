@@ -15,18 +15,14 @@ public class Main {
 		
 		printMessage("What is your number?");
 		int number = UserInput.input();
-		
+
 		int[] temp = Calculations.reverseArray(number);
-			
-		//System.out.println(Arrays.toString(temp));
-			
 		
 		
-		
-		
-		String result = Calculations.whichReadout(temp);
-		printMessage("" + result);
-		
+		if (temp.length <= 9) {
+			String result = Calculations.whichReadout(temp);
+			printMessage("" + result);
+		}
 	}
 
 }
